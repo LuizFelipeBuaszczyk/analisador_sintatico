@@ -4,17 +4,40 @@ import { AnalisadorSintatico } from './AnalisadorSintatico.js'
 
 document
     .getElementById("btAnalisar")
-    .addEventListener("click", btAnalisar)
+    .addEventListener("click", btAnalisar);
+
+document
+    .getElementById("btNextStep")
+    .addEventListener("click", btNextStep);
 
 let operations = [];
-
+let step = undefined;
 
 function btAnalisar(){
     const sentence = document.getElementById("inputSentence").value;
     const analisadorSintatico = new AnalisadorSintatico();
     
     operations = analisadorSintatico.resolve(sentence);
-    
-    console.log(operations);
+    step = 0;
+    document.getElementById("tbAnalisador").innerHTML = '';
+    console.log("SEQUENCIA DE OPERAÇÕES GERADA");
 }
 
+function btNextStep() {
+    if (step === undefined) return;
+    if (step >= operations.length) return;
+
+    const table = document.getElementById("tbAnalisador");
+    
+    const newRow = table.insertRow();
+
+    const cellStack = newRow.insertCell(0);
+    const cellInput = newRow.insertCell(1);
+    const cellAction = newRow.insertCell(2);
+
+    cellStack.innerHTML = operations[step]['stack'];
+    cellInput.innerHTML = operations[step]['input'];
+    cellAction.innerHTML = operations[step]['action'];
+    
+    step++;
+}
