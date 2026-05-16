@@ -18,6 +18,10 @@ document
     .getElementById("btExitModal")
     .addEventListener("click", exitModal);
 
+document
+    .getElementById("btConfirmSentence")
+    .addEventListener("click", btConfirmSentence);
+
 const actionCellElements = document.getElementsByClassName("actionCell")
 
 for (const element of actionCellElements) {
@@ -28,6 +32,8 @@ for (const element of actionCellElements) {
 
 let operations = [];
 let step = undefined;
+let sentence = undefined;
+let genNextStep = undefined;
 
 function btAnalisar(){
     const sentence = document.getElementById("inputSentence").value;
@@ -60,6 +66,12 @@ function btNextStep() {
 
 function openModal() {
     const modal = document.getElementById('modalGenerateSentence');
+    const txGenSentence = document.getElementById('txGenSentence');
+
+    sentence = undefined;
+    genNextStep = undefined;
+    txGenSentence.innerHTML = '';
+
     modal.showModal();
 }
 
@@ -69,5 +81,60 @@ function exitModal() {
 }
 
 function getCellAction(e) {
-    console.log(e);
+    if (!e.target.textContent) return;
+    
+    const nt = e.target.textContent.substr(0,1);
+    const action = e.target.textContent.substr(5, e.target.textContent.length);        
+
+    
+    if (sentence === undefined) {
+        if (nt != 'S') return;
+        
+        sentence = action;
+    }
+    else {
+        if (nt !== genNextStep) return;
+       
+        let newSentence = "";
+        for (let i=0; i<sentence.length; i++){
+            const caracter = sentence[i];
+            
+            if (caracter!=nt) {
+                newSentence += caracter;
+            }
+            else {
+                if (action === 'ε') continue;
+                newSentence += action;
+            }
+        }
+        sentence = newSentence;
+    }
+    
+    genNextStep = undefined;
+    for (let i=0; i<sentence.length; i++) {
+        const caracter = sentence[i];
+        
+        // É um NT
+        if (caracter.charCodeAt(0) >= 65 && caracter.charCodeAt(0) <= 90){
+            genNextStep = caracter;            
+        }
+    }
+
+    if (genNextStep === undefined) {
+        console.log("FIM DA SENTENÇA!")
+    }
+
+    document.getElementById('txGenSentence').innerHTML = sentence;
+}
+
+function btConfirmSentence() {    
+    
+    if (!sentence) {
+        exitModal();
+        return;
+    }
+
+    const inputSentence = document.getElementById('inputSentence');
+    inputSentence.value = sentence;
+    exitModal();
 }
