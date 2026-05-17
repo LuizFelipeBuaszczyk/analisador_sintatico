@@ -12,11 +12,20 @@ document
 
 document
     .getElementById("btGenerateSentence")
-    .addEventListener("click", openModal);
+    .addEventListener("click", (event) => {openModal('modalGenerateSentence')});
 
 document
-    .getElementById("btExitModal")
-    .addEventListener("click", exitModal);
+    .getElementById("btExitGenerateSentenceModal")
+    .addEventListener("click", (event) => {exitModal('modalGenerateSentence')});
+
+document
+    .getElementById("btViewGramaticInfo")
+    .addEventListener("click", (event) => {openModal('modalViewGramatic')});
+
+document
+    .getElementById("btExitViewGramaticModal")
+    .addEventListener("click", (event) => {exitModal('modalViewGramatic')});
+
 
 document
     .getElementById("btConfirmSentence")
@@ -64,8 +73,8 @@ function btNextStep() {B
     step++;
 }
 
-function openModal() {
-    const modal = document.getElementById('modalGenerateSentence');
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
     const txGenSentence = document.getElementById('txGenSentence');
 
     sentence = undefined;
@@ -75,8 +84,8 @@ function openModal() {
     modal.showModal();
 }
 
-function exitModal() {
-    const modal = document.getElementById('modalGenerateSentence');
+function exitModal(modalId) {
+    const modal = document.getElementById(modalId);
     modal.close();
 }
 
@@ -130,11 +139,11 @@ function getCellAction(e) {
 function btConfirmSentence() {    
     
     if (!sentence) {
-        exitModal();
+        exitModal('modalGenerateSentence');
         return;
     }
 
     const inputSentence = document.getElementById('inputSentence');
     inputSentence.value = sentence;
-    exitModal();
+    exitModal('modalGenerateSentence');
 }

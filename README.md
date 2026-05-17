@@ -12,3 +12,21 @@ A ::= aCb |  ε
 B ::= aCa | bAb
 C ::= aB | cAc
 ```
+
+### FIRST
+
+```text
+S = a, b, c 
+A = a, ε
+B = a, b
+C = a, c
+```
+
+### FOLLOW
+
+```text
+S = $
+A = b, c
+B = a, b
+C = a, b
+```
