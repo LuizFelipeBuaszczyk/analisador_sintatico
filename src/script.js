@@ -42,10 +42,10 @@ function btAnalisar(){
     operations = analisadorSintatico.resolve(sentence);
     step = 0;
     document.getElementById("tbAnalisador").innerHTML = '';
-    console.log("SEQUENCIA DE OPERAÇÕES GERADA");
+    btNextStep();
 }
 
-function btNextStep() {
+function btNextStep() {B	
     if (step === undefined) return;
     if (step >= operations.length) return;
 

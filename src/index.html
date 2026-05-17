@@ -4,13 +4,16 @@
     <meta charset="utf-8">
     <title>Analisador Sintático</title>
     
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" type="module" defer></script>
 </head>
 <body>
-    <section>
+    <section id="inputSection">
         <input type="text" id="inputSentence"/>
-        <button id="btGenerateSentence">Gerar Sentença</button>
-        <button id="btAnalisar">Analisar</button>
+        <div>
+            <button id="btGenerateSentence">Gerar Sentença</button>
+            <button id="btAnalisar">Analisar</button>
+        </div>
     </section>
     <section>
         <button id="btNextStep">Próximo passo</button>
@@ -20,52 +23,54 @@
     </section>
 
     <dialog id="modalGenerateSentence">
-        <section>
-            <button id="btExitModal">X</button>
-        </section>
-        <table>
-            <thead>
-                <tr>
-                    <td>X</td>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                    <td>$</td>
-                <tr>
-            <thead>
-            <tbody>
-                <tr>
-                    <td>S</td>
-                    <td class="actionCell">S -> aBb</td>
-                    <td class="actionCell">S -> bAc</td>
-                    <td class="actionCell">S -> cCb</td>
-                    <td class="actionCell"></td>
-                </tr>
-                <tr>
-                    <td>A</td>
-                    <td class="actionCell">A -> aCb</td>
-                    <td class="actionCell">A -> ε</td>
-                    <td class="actionCell">A -> ε</td>
-                    <td class="actionCell"></td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td class="actionCell">B -> aCa</td>
-                    <td class="actionCell">B -> bAb</td>
-                    <td class="actionCell"></td>
-                    <td class="actionCell"></td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td class="actionCell">C -> aB</td>
-                    <td class="actionCell"></td>
-                    <td class="actionCell">C -> cAc</td>
-                    <td class="actionCell"></td>
-                </tr>
-            </tbody>
-        </table>
-        <p id="txGenSentence"><p>
-        <button id="btConfirmSentence">Confirmar</button>
+        <div class="container">
+            <section>
+                <button id="btExitModal">X</button>
+            </section>
+            <table>
+                <thead>
+                    <tr>
+                        <td>X</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>c</td>
+                        <td>$</td>
+                    <tr>
+                <thead>
+                <tbody>
+                    <tr>
+                        <td>S</td>
+                        <td class="actionCell">S -> aBb</td>
+                        <td class="actionCell">S -> bAc</td>
+                        <td class="actionCell">S -> cCb</td>
+                        <td class="actionCell"></td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td class="actionCell">A -> aCb</td>
+                        <td class="actionCell">A -> ε</td>
+                        <td class="actionCell">A -> ε</td>
+                        <td class="actionCell"></td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td class="actionCell">B -> aCa</td>
+                        <td class="actionCell">B -> bAb</td>
+                        <td class="actionCell"></td>
+                        <td class="actionCell"></td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td class="actionCell">C -> aB</td>
+                        <td class="actionCell"></td>
+                        <td class="actionCell">C -> cAc</td>
+                        <td class="actionCell"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p id="txGenSentence"><p>
+            <button id="btConfirmSentence">Confirmar</button>
+        </div>
     </dialog>
 </body>
 </html>
