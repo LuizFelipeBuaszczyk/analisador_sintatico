@@ -54,7 +54,7 @@ function btAnalisar(){
     btNextStep();
 }
 
-function btNextStep() {B	
+function btNextStep() {
     if (step === undefined) return;
     if (step >= operations.length) return;
 

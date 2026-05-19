@@ -8,171 +8,181 @@
     <script src="script.js" type="module" defer></script>
 </head>
 <body>
-    <section id="inputSection">
-        <input type="text" id="inputSentence"/>
-        <div>
-            <button id="btGenerateSentence" >Gerar Sentença</button>
-            <button id="btAnalisar">Analisar</button>
-            <button id="btViewGramaticInfo">Ver Gramática</button>
-        </div>
-    </section>
-    <section>
-        <button id="btNextStep">Próximo passo</button>
-        <table id="tbAnalisador">
-            <tbody></tbody>
-        </table>
-    </section>
+    <header>
+        <h1>Analisador Sintático</h1>
+    </header>
+    <main>
+        <section id="inputSection">
+            <input type="text" id="inputSentence"/>
+            <div>
+                <button id="btGenerateSentence" >Gerar Sentença</button>
+                <button id="btAnalisar">Analisar</button>
+                <button id="btViewGramaticInfo">Ver Gramática</button>
+            </div>
+        </section>
+        <section class="containerSection">
+            <button id="btNextStep">Próximo passo</button>
+            <table id="tbAnalisador">
+                <tbody></tbody>
+            </table>
+        </section>
+        <dialog id="modalGenerateSentence">
+            <div class="container">
+                <section>
+                    <button id="btExitGenerateSentenceModal">X</button>
+                </section>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>X</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>c</td>
+                            <td>$</td>
+                        <tr>
+                    <thead>
+                    <tbody>
+                        <tr>
+                            <td>S</td>
+                            <td class="actionCell">S -> aBb</td>
+                            <td class="actionCell">S -> bAc</td>
+                            <td class="actionCell">S -> cCb</td>
+                            <td class="actionCell"></td>
+                        </tr>
+                        <tr>
+                            <td>A</td>
+                            <td class="actionCell">A -> aCb</td>
+                            <td class="actionCell">A -> ε</td>
+                            <td class="actionCell">A -> ε</td>
+                            <td class="actionCell"></td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td class="actionCell">B -> aCa</td>
+                            <td class="actionCell">B -> bAb</td>
+                            <td class="actionCell"></td>
+                            <td class="actionCell"></td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td class="actionCell">C -> aB</td>
+                            <td class="actionCell"></td>
+                            <td class="actionCell">C -> cAc</td>
+                            <td class="actionCell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="txGenSentence"><p>
+                <button id="btConfirmSentence">Confirmar</button>
+            </div>
+        </dialog>
 
-    <dialog id="modalGenerateSentence">
-        <div class="container">
-            <section>
-                <button id="btExitGenerateSentenceModal">X</button>
-            </section>
-            <table>
-                <thead>
-                    <tr>
-                        <td>X</td>
-                        <td>a</td>
-                        <td>b</td>
-                        <td>c</td>
-                        <td>$</td>
-                    <tr>
-                <thead>
-                <tbody>
-                    <tr>
-                        <td>S</td>
-                        <td class="actionCell">S -> aBb</td>
-                        <td class="actionCell">S -> bAc</td>
-                        <td class="actionCell">S -> cCb</td>
-                        <td class="actionCell"></td>
-                    </tr>
-                    <tr>
-                        <td>A</td>
-                        <td class="actionCell">A -> aCb</td>
-                        <td class="actionCell">A -> ε</td>
-                        <td class="actionCell">A -> ε</td>
-                        <td class="actionCell"></td>
-                    </tr>
-                    <tr>
-                        <td>B</td>
-                        <td class="actionCell">B -> aCa</td>
-                        <td class="actionCell">B -> bAb</td>
-                        <td class="actionCell"></td>
-                        <td class="actionCell"></td>
-                    </tr>
-                    <tr>
-                        <td>C</td>
-                        <td class="actionCell">C -> aB</td>
-                        <td class="actionCell"></td>
-                        <td class="actionCell">C -> cAc</td>
-                        <td class="actionCell"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <p id="txGenSentence"><p>
-            <button id="btConfirmSentence">Confirmar</button>
-        </div>
-    </dialog>
-
-    <dialog id="modalViewGramatic">
-        <section>
-            <button id="btExitViewGramaticModal">X</button>
-        </section>
-        <section id="gramaticSectionView">
-            
-        </section>
-        <section id="firstSectionView">
-            <h2>First</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>S =</td> 
-                        <td>a, b, c</td> 
-                    </tr>
-                    <tr>
-                        <td>A =</td> 
-                        <td>a, ε</td> 
-                    </tr>
-                    <tr>
-                        <td>B =</td> 
-                        <td>a, b</td> 
-                    </tr>
-                    <tr>
-                        <td>C =</td> 
-                        <td>a, c</td> 
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section id="followSectionView">
-            <h2>Follow</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>S =</td> 
-                        <td>$</td> 
-                    </tr>
-                    <tr>
-                        <td>A =</td> 
-                        <td>b, c</td> 
-                    </tr>
-                    <tr>
-                        <td>B =</td> 
-                        <td>a, b</td> 
-                    </tr>
-                    <tr>
-                        <td>C =</td> 
-                        <td>a, b</td> 
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section id="parsingTableView">
-            <h2>Tabela de parsing</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <td>X</td>
-                        <td>a</td>
-                        <td>b</td>
-                        <td>c</td>
-                        <td>$</td>
-                    <tr>
-                <thead>
-                <tbody>
-                    <tr>
-                        <td>S</td>
-                        <td>S -> aBb</td>
-                        <td>S -> bAc</td>
-                        <td>S -> cCb</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>A</td>
-                        <td>A -> aCb</td>
-                        <td>A -> ε</td>
-                        <td>A -> ε</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>B</td>
-                        <td>B -> aCa</td>
-                        <td>B -> bAb</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>C</td>
-                        <td>C -> aB</td>
-                        <td></td>
-                        <td>C -> cAc</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
- 
-        </section>
-    </dialog>
-
+        <dialog id="modalViewGramatic">
+            <div class="container">
+                <section>
+                    <button id="btExitViewGramaticModal">X</button>
+                </section>
+                <section id="gramaticSectionView">
+                    
+                </section>
+                <section id="firstSectionView">
+                    <h2>First</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>S</td> 
+                                <td>a, b, c</td> 
+                            </tr>
+                            <tr>
+                                <td>A</td> 
+                                <td>a, ε</td> 
+                            </tr>
+                            <tr>
+                                <td>B</td> 
+                                <td>a, b</td> 
+                            </tr>
+                            <tr>
+                                <td>C</td> 
+                                <td>a, c</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section id="followSectionView">
+                    <h2>Follow</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>S</td> 
+                                <td>$</td> 
+                            </tr>
+                            <tr>
+                                <td>A</td> 
+                                <td>b, c</td> 
+                            </tr>
+                            <tr>
+                                <td>B</td> 
+                                <td>a, b</td> 
+                            </tr>
+                            <tr>
+                                <td>C</td> 
+                                <td>a, b</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section id="parsingTableView">
+                    <h2>Tabela de parsing</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>X</td>
+                                <td>a</td>
+                                <td>b</td>
+                                <td>c</td>
+                                <td>$</td>
+                            <tr>
+                        <thead>
+                        <tbody>
+                            <tr>
+                                <td>S</td>
+                                <td>S -> aBb</td>
+                                <td>S -> bAc</td>
+                                <td>S -> cCb</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>A -> aCb</td>
+                                <td>A -> ε</td>
+                                <td>A -> ε</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>B -> aCa</td>
+                                <td>B -> bAb</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>C -> aB</td>
+                                <td></td>
+                                <td>C -> cAc</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </dialog>
+    </main>    
+    <footer>
+        <p>TDE Realizado por: 
+        <a target="_blank" href="https://github.com/LucasSanto104116">Lucas Oliveira Santos</a> e 
+        <a target="_blank" href="https://github.com/LuizFelipeBuaszczyk">Luiz Felipe Buaszczyk</a>
+        </p>
+    </footer>
 </body>
 </html>
