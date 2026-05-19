@@ -11,6 +11,14 @@ document
     .addEventListener("click", btNextStep);
 
 document
+    .getElementById("btAllSteps")
+    .addEventListener("click", btAllSteps);
+
+document
+    .getElementById("btResetSteps")
+    .addEventListener("click", btResetSteps);
+
+document
     .getElementById("btGenerateSentence")
     .addEventListener("click", (event) => {openModal('modalGenerateSentence')});
 
@@ -71,6 +79,35 @@ function btNextStep() {
     cellAction.innerHTML = operations[step]['action'];
     
     step++;
+}
+
+function btAllSteps() {
+    if (step === undefined) return;
+    if (step >= operations.length) return;
+
+
+    for (let i=1; i<operations.length; i++){
+        const table = document.getElementById("tbAnalisador");
+        
+        const newRow = table.insertRow();
+
+        const cellStack = newRow.insertCell(0);
+        const cellInput = newRow.insertCell(1);
+        const cellAction = newRow.insertCell(2);
+
+        cellStack.innerHTML = operations[i]['stack'];
+        cellInput.innerHTML = operations[i]['input'];
+        cellAction.innerHTML = operations[i]['action'];
+    
+    }
+}
+
+function btResetSteps() {
+    const table = document.getElementById("tbAnalisador");
+    table.innerHTML = ``;
+    step = 0;
+
+    btNextStep();
 }
 
 function openModal(modalId) {
