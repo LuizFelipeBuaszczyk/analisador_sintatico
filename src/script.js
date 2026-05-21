@@ -86,7 +86,7 @@ function btAllSteps() {
     if (step >= operations.length) return;
 
 
-    for (let i=1; i<operations.length; i++){
+    for (let i=step; i<operations.length; i++){
         const table = document.getElementById("tbAnalisador");
         
         const newRow = table.insertRow();
@@ -98,8 +98,8 @@ function btAllSteps() {
         cellStack.innerHTML = operations[i]['stack'];
         cellInput.innerHTML = operations[i]['input'];
         cellAction.innerHTML = operations[i]['action'];
-    
     }
+    step = operations.length;
 }
 
 function btResetSteps() {
