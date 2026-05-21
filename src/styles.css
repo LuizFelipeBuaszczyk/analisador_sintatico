@@ -90,6 +90,10 @@ dialog {
     border-radius: 4px;
 }
 
+#generateTable {
+    background-color: lightgray;
+}
+
 .container {
     display: flex;
     flex-direction: column;

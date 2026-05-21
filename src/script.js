@@ -117,6 +117,11 @@ function openModal(modalId) {
     sentence = undefined;
     genNextStep = undefined;
     txGenSentence.innerHTML = '';
+    
+
+    if (modalId == 'modalGenerateSentence') {
+        document.getElementById('generateRowS').style.backgroundColor = 'white';
+    }
 
     modal.showModal();
 }
@@ -131,15 +136,19 @@ function getCellAction(e) {
     
     const nt = e.target.textContent.substr(0,1);
     const action = e.target.textContent.substr(5, e.target.textContent.length);        
-
     
+        
     if (sentence === undefined) {
         if (nt != 'S') return;
         
+        document.getElementById('generateRowS').style.backgroundColor = 'lightgray';
         sentence = action;
     }
     else {
         if (nt !== genNextStep) return;
+        const currentRow = getHtmlGenerateRow(nt);
+        currentRow.style.backgroundColor = 'lightgray';
+
        
         let newSentence = "";
         for (let i=0; i<sentence.length; i++){
@@ -166,11 +175,27 @@ function getCellAction(e) {
         }
     }
 
-    if (genNextStep === undefined) {
-        console.log("FIM DA SENTENÇA!")
-    }
 
     document.getElementById('txGenSentence').innerHTML = sentence;
+
+    if (genNextStep === undefined) {
+        return;
+    }
+    const nextRow = getHtmlGenerateRow(genNextStep);
+    nextRow.style.backgroundColor = 'white';
+}
+
+function getHtmlGenerateRow(step){
+    switch (genNextStep) {
+        case 'S':
+            return document.getElementById('generateRowS'); 
+        case 'A':
+            return document.getElementById('generateRowA');
+        case 'C':
+            return document.getElementById('generateRowC'); 
+        case 'B':
+            return document.getElementById('generateRowB'); 
+    }   
 }
 
 function btConfirmSentence() {    
