@@ -13,10 +13,12 @@
     </header>
     <main>
         <section id="inputSection">
-            <input type="text" id="inputSentence"/>
+            <div>
+                <input type="text" id="inputSentence"/>
+                <button id="btAnalisar">Analisar</button>
+            </div>
             <div>
                 <button id="btGenerateSentence" >Gerar Sentença</button>
-                <button id="btAnalisar">Analisar</button>
                 <button id="btViewGramaticInfo">Ver Gramática</button>
             </div>
         </section>
@@ -32,8 +34,8 @@
         </section>
         <dialog id="modalGenerateSentence">
             <div class="container">
-                <section>
-                    <button id="btExitGenerateSentenceModal">X</button>
+                <section class="dialogHeader">
+                    <button id="btExitGenerateSentenceModal" class="exitButton">X</button>
                 </section>
                 <table id="generateTable">
                     <thead>
@@ -83,8 +85,8 @@
 
         <dialog id="modalViewGramatic">
             <div class="container">
-                <section>
-                    <button id="btExitViewGramaticModal">X</button>
+                <section class="dialogHeader">
+                    <button id="btExitViewGramaticModal" class="exitButton">X</button>
                 </section>
                 <section id="gramaticSectionView">
                     <h2>Gramática</h2>
