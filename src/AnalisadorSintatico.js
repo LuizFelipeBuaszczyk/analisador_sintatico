@@ -48,7 +48,7 @@ export class AnalisadorSintatico {
                 operationLine['action'] = `ACEITO EM ${counter}`
                 return operations;
             }
-            if (letter == '$') {
+            if (terminal == '$') {
                 operationLine['action'] = `REJEITA EM ${counter}`;
                 return operations;
             }
